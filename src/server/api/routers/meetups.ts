@@ -1,0 +1,24 @@
+import { z } from "zod";
+
+import { createTRPCRouter, protectedProcedure } from "../trpc";
+
+export const meetupRouter = createTRPCRouter({
+  getAll: protectedProcedure.query(({ ctx }) => {
+    return ctx.prisma.meetup.findMany({
+      where: {
+        userId: ctx.session.user.id,
+      },
+    });
+  }),
+
+  create: protectedProceedure
+    .input(z.object({ title: z.string }))
+    .mutation(({ ctx, input }) => {
+      return ctx.prisma.meetup.create({
+        data: {
+          title: input.title,
+          userId: ctx.session.user.id,
+        },
+      });
+    }),
+});

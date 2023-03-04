@@ -55,6 +55,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    meetups       Meetup[]
 }
 
 model VerificationToken {
@@ -64,3 +65,24 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+model Meetup {
+    id          String      @id @default(cuid())
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+    title       String
+    user        User        @relation(fields: [userId], references: [id])
+    userId      String
+    comments    Comment[]
+}
+
+model Comment {
+    id          String      @id @default(cuid())
+    createdAt   DateTime    @default(now())
+    updatedAt   DateTime    @updatedAt
+    title       String
+    content     String      @db.Text
+    meetup      Meetup      @relation(fields: [commentId], references: [id])
+    commentId   String
+}
+
