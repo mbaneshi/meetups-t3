@@ -4,6 +4,8 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 
 import { Header } from "~/components/Header";
+import { CommentEditor } from "~/components/CommentEditor";
+import { CommentCard } from "~/components/CommentCard";
 
 import { api, type RouterOutputs } from "../utils/api";
 
@@ -42,7 +44,7 @@ const Content: React.FC = () => {
     }
   );
 
-  const createTopic = api.meetup.create.useMutation({
+  const createMeetup = api.meetup.create.useMutation({
     onSuccess: () => {
       void refetchMeetups();
     },
@@ -54,9 +56,31 @@ const Content: React.FC = () => {
     },
   });
 
+  const { data: comments, refetch: refetchComments } =
+    api.comment.getAll.useQuery(
+      {
+        meetupId: selectedMeetup?.id ?? "",
+      },
+      {
+        enabled: sessionData?.user !== undefined && selectedMeetup !== null,
+      }
+    );
+
+  const createComment = api.comment.create.useMutation({
+    onSuccess: () => {
+      void refetchComments();
+    },
+  });
+
+  const deleteComment = api.comment.delete.useMutation({
+    onSuccess: () => {
+      void refetchComments();
+    },
+  });
+
   return (
-    <div className="mx-5 mt-5 grid grid-cols-4 gap-2">
-      <div className="px-2">
+    <div className="mx-5 mt-5 grid grid-cols-5 gap-2">
+      <div className="col-span-2 px-2">
         <ul className="menu rounded-box w-72 bg-base-100 p-2">
           {meetups?.map((meetup) => (
             <li key={meetup.id}>
@@ -92,7 +116,7 @@ const Content: React.FC = () => {
           className="input-bordered input input-sm w-full"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              createTopic.mutate({
+              createMeetup.mutate({
                 title: e.currentTarget.value,
               });
               e.currentTarget.value = "";
@@ -100,7 +124,27 @@ const Content: React.FC = () => {
           }}
         ></input>
       </div>
-      <div className="col-span-3"></div>
+      <div className="col-span-3">
+        <div>
+          {comments?.map((comment) => (
+            <div key={comment.id} className="mt-5">
+              <CommentCard
+                comment={comment}
+                onDelete={() => void deleteComment.mutate({ id: comment.id })}
+              />
+            </div>
+          ))}
+        </div>
+        <CommentEditor
+          onSave={({ title, content }) => {
+            void createComment.mutate({
+              title,
+              content,
+              meetupId: selectedMeetup?.id ?? "",
+            });
+          }}
+        />
+      </div>
     </div>
   );
 };

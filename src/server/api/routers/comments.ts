@@ -3,12 +3,12 @@ import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const commentRouter = createTRPCRouter({
-  delete: protectedProcedure
-    .input(z.object({ id: z.string() }))
-    .mutation(async ({ ctx, input }) => {
-      return ctx.prisma.comment.delete({
+  getAll: protectedProcedure
+    .input(z.object({ meetupId: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.comment.findMany({
         where: {
-          id: input.id,
+          meetupId: input.meetupId,
         },
       });
     }),
@@ -27,12 +27,12 @@ export const commentRouter = createTRPCRouter({
       });
     }),
 
-  getAll: protectedProcedure
-    .input(z.object({ meetupId: z.string() }))
-    .query(({ ctx, input }) => {
-      return ctx.prisma.comment.findMany({
+  delete: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      return ctx.prisma.comment.delete({
         where: {
-          meetupId: input.meetupId,
+          id: input.id,
         },
       });
     }),
