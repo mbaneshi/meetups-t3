@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { api } from "~/utils/api";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -7,7 +6,7 @@ import { useRouter } from "next/router";
 import { CommentEditor } from "~/components/CommentEditor";
 import { CommentCard } from "~/components/CommentCard";
 
-const MeetupDetail = (props) => {
+const MeetupDetail = () => {
   const router = useRouter();
   const meetupId = router.query.meetupId;
 

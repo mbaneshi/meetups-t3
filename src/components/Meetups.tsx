@@ -40,43 +40,52 @@ const Meetups: React.FC = () => {
   }
 
   return (
-    <div className="items-center justify-center px-2">
-      <ul className="menu rounded-box w-72 bg-base-100 p-2">
-        {meetups?.map((meetup) => (
-          <li key={meetup.id}>
-            <div className="flex justify-between">
-              <a
-                href="#"
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  showDetailsHandler(meetup);
-                }}
-              >
-                {meetup.title}
-              </a>
-              <button
-                className="font-semibold text-red-600"
-                data-id={meetup.id}
-                onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
-                  const button = event.target as HTMLButtonElement;
-                  const params = { id: button.dataset.id || "" };
-                  deleteMeetup.mutate(params);
-                }}
-              >
-                x
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-      <div className="divider" />
-      <div className="my-2 flex ">
-        <button
-          className="my-xl btn-warning btn-xs btn mx-auto h-8 px-10"
-          onClick={newMeetupHandler}
-        >
-          Submit New Note
-        </button>
+    <div>
+      {sessionData == undefined && (
+        <div className="text-center">
+          <h2 className="font-semibold">
+            Please Sign In to Submit Appointments
+          </h2>
+        </div>
+      )}
+      <div className="items-center justify-center px-2">
+        <ul className="menu rounded-box w-80 bg-base-100 p-2">
+          {meetups?.map((meetup) => (
+            <li key={meetup.id}>
+              <div className="flex justify-between">
+                <a
+                  href="#"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    showDetailsHandler(meetup);
+                  }}
+                >
+                  {meetup.title}
+                </a>
+                <button
+                  className="font-semibold text-red-600"
+                  data-id={meetup.id}
+                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                    const button = event.target as HTMLButtonElement;
+                    const params = { id: button.dataset.id || "" };
+                    deleteMeetup.mutate(params);
+                  }}
+                >
+                  x
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <div className="w-5xl divider" />
+        <div className="my-2 flex ">
+          <button
+            className="my-xl btn-warning btn-xs btn mx-auto h-8 px-10"
+            onClick={newMeetupHandler}
+          >
+            Submit New Note
+          </button>
+        </div>
       </div>
     </div>
   );

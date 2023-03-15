@@ -1,10 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export const Header = () => {
   const { data: sessionData } = useSession();
 
   return (
-    <div className="navbar bg-primary text-primary-content">
+    <div className="navbar bg-primary px-10 text-primary-content">
       <div className="flex-1 pl-5 text-3xl font-bold">
         {sessionData?.user?.name
           ? `Appointments for ${sessionData.user.name}`
