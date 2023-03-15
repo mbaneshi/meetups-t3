@@ -6,7 +6,9 @@ export const Header = () => {
   return (
     <div className="navbar bg-primary text-primary-content">
       <div className="flex-1 pl-5 text-3xl font-bold">
-        {sessionData?.user?.name ? `Notes from ${sessionData.user.name}` : ""}
+        {sessionData?.user?.name
+          ? `Appointments for ${sessionData.user.name}`
+          : ""}
       </div>
       <div className=" flex-non gap-2">
         <div className="dropdown-end dropdown">

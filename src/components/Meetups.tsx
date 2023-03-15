@@ -1,13 +1,11 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 import { api, type RouterOutputs } from "../utils/api";
-
-import { CommentEditor } from "~/components/CommentEditor";
-import { CommentCard } from "~/components/CommentCard";
-// import Comments from "./Comments";
 
 const Meetups: React.FC = () => {
   const router = useRouter();
@@ -27,43 +25,18 @@ const Meetups: React.FC = () => {
     }
   );
 
-  const createMeetup = api.meetup.create.useMutation({
-    onSuccess: () => {
-      void refetchMeetups();
-    },
-  });
-
   const deleteMeetup = api.meetup.delete.useMutation({
     onSuccess: () => {
       void refetchMeetups();
     },
   });
 
-  const { data: comments, refetch: refetchComments } =
-    api.comment.getAll.useQuery(
-      {
-        meetupId: selectedMeetup?.id ?? "",
-      },
-      {
-        enabled: sessionData?.user !== undefined && selectedMeetup !== null,
-      }
-    );
-
-  const createComment = api.comment.create.useMutation({
-    onSuccess: () => {
-      void refetchComments();
-    },
-  });
-
-  const deleteComment = api.comment.delete.useMutation({
-    onSuccess: () => {
-      void refetchComments();
-    },
-  });
-
   function showDetailsHandler(meetup) {
-    console.log(meetup.id);
     router.push("/" + meetup.id);
+  }
+
+  function newMeetupHandler() {
+    router.push("/NewMeetUp");
   }
 
   return (
@@ -76,7 +49,6 @@ const Meetups: React.FC = () => {
                 href="#"
                 onClick={(evt) => {
                   evt.preventDefault();
-                  // setSelectedMeetup(meetup);
                   showDetailsHandler(meetup);
                 }}
               >
@@ -98,39 +70,14 @@ const Meetups: React.FC = () => {
         ))}
       </ul>
       <div className="divider" />
-      <input
-        type="text"
-        placeholder="New Meetup"
-        className="input-bordered input input-sm w-full"
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            createMeetup.mutate({
-              title: e.currentTarget.value,
-            });
-            e.currentTarget.value = "";
-          }
-        }}
-      ></input>{" "}
-      <div className="">
-        {comments?.map((comment) => (
-          <div key={comment.id} className="mt-5">
-            <CommentCard
-              comment={comment}
-              onDelete={() => void deleteComment.mutate({ id: comment.id })}
-            />
-          </div>
-        ))}
-        <CommentEditor
-          onSave={({ title, content }) => {
-            void createComment.mutate({
-              title,
-              content,
-              meetupId: selectedMeetup?.id ?? "",
-            });
-          }}
-        />
+      <div className="my-2 flex ">
+        <button
+          className="my-xl btn-warning btn-xs btn mx-auto h-8 px-10"
+          onClick={newMeetupHandler}
+        >
+          Submit New Note
+        </button>
       </div>
-      {/* <Comments sessionData={sessionData} selectedMeetup={selectedMeetup}/> */}
     </div>
   );
 };
