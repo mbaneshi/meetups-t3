@@ -13,7 +13,7 @@ export const CommentEditor = ({
   const [title, setTitle] = useState<string>("");
 
   return (
-    <div className="max-w-300px card mt-5 border border-gray-200 bg-base-100 shadow-xl">
+    <div className="card mt-5 border border-gray-200 bg-base-100 shadow-xl">
       <div className="card-body">
         <h2 className="card-title">
           <input
@@ -26,7 +26,7 @@ export const CommentEditor = ({
         </h2>
         <CodeMirror
           value={code}
-          width="500px"
+          width="max-w-500px"
           height="30vh"
           minWidth="100%"
           minHeight="30vh"
