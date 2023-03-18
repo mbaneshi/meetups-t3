@@ -71,22 +71,14 @@ model Meetup {
     createdAt   DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
     title       String
-    description String
-    location    String
-    images      Image[]
+    // description String
+    // location    String
     user        User        @relation(fields: [userId], references: [id])
     userId      String
     comments    Comment[]
 }
 
-model Image {
-  id            String      @default(cuid()) @id
-  publicId      String      @unique
-  format        String
-  version       String
-  meetup        Meetup      @relation(fields: [meetupId], references: [id])
-  meetupId      String
-}
+
 
 model Comment {
     id          String      @id @default(cuid())

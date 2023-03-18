@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import React, { useState } from "react";
 import Router from "next/router";
+import Layout from "~/pages/api/upload";
 
 const Upload = () => {
   const [imageUploaded, setImageUploaded] = useState();
