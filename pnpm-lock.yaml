@@ -21,6 +21,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.47.1
   '@uiw/react-codemirror': ^4.19.9
   autoprefixer: ^10.4.7
+  cloudinary: ^1.35.0
   codemirror: ^6.0.1
   daisyui: ^2.51.3
   eslint: ^8.30.0
@@ -52,6 +53,7 @@ dependencies:
   '@trpc/react-query': 10.12.0_tij422wpfxfl3iixjhzsgwgs2e
   '@trpc/server': 10.12.0
   '@uiw/react-codemirror': 4.19.9_baspzbimxvs2elm6yopg5vnnpa
+  cloudinary: 1.35.0
   codemirror: 6.0.1
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.19.2_3vryta7zmbcsw4rrqf4axjqggm
@@ -3448,6 +3450,28 @@ packages:
     engines: {node: '>=0.8'}
     dev: false
 
+  /cloudinary-core/2.13.0_lodash@4.17.21:
+    resolution: {integrity: sha512-Nt0Q5I2FtenmJghtC4YZ3MZZbGg1wLm84SsxcuVwZ83OyJqG9CNIGp86CiI6iDv3QobaqBUpOT7vg+HqY5HxEA==}
+    peerDependencies:
+      lodash: '>=4.0'
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+
+  /cloudinary/1.35.0:
+    resolution: {integrity: sha512-0aRLVOaVsoiqDCNkSzlPGR/oYOlE3AGrtwFTPx7xlZCPyKNzqeD9t9ENmPwzHn3yn/afAvy4h1sqb2yPyJOAow==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      cloudinary-core: 2.13.0_lodash@4.17.21
+      core-js: 3.29.1
+      lodash: 4.17.21
+      q: 1.5.1
+    optionalDependencies:
+      proxy-agent: 5.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /code-block-writer/10.1.1:
     resolution: {integrity: sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==}
     dev: false
@@ -3560,6 +3584,11 @@ packages:
     resolution: {integrity: sha512-ScMn3uZNAFhK2DGoEfErguoiAHhV2Ju+oJo/jK08p7B3f3UhocUrCCkTvnZaiS+edl5nlIoiBXKcwMc6elv4KQ==}
     dependencies:
       browserslist: 4.21.5
+    dev: false
+
+  /core-js/3.29.1:
+    resolution: {integrity: sha512-+jwgnhg6cQxKYIIjGtAHq2nwUOolo9eoFZ4sHfUH09BLXBgxnH4gA0zEd+t+BO2cNB8idaBtZFcFTRjQJRJmAw==}
+    requiresBuild: true
     dev: false
 
   /core-util-is/1.0.3:
@@ -7262,6 +7291,11 @@ packages:
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
+
+  /q/1.5.1:
+    resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
+    engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
+    dev: false
 
   /qs/6.11.0:
     resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}

@@ -22,19 +22,4 @@ const config = {
   },
 };
 
-module.exports = {
-  images: {
-    domains: ["avatars.githubusercontent.com"],
-    formats: ["image/avif", "image/webp", "image/jpeg"],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "assets.vercel.com",
-        port: "",
-        pathname: "/image/upload/**",
-      },
-    ],
-  },
-};
-
 export default config;
