@@ -1,12 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export const Header = () => {
+  const router = useRouter();
   const { data: sessionData } = useSession();
 
   return (
     <div className="navbar bg-primary px-10 text-primary-content">
-      <div className="flex-1 pl-5 text-3xl font-bold">
+      <div
+        className="flex-1 cursor-pointer pl-5 text-3xl font-bold hover:text-white"
+        onClick={() => void router.push("/")}
+      >
         {sessionData?.user?.name
           ? `Appointments for ${sessionData.user.name}`
           : ""}

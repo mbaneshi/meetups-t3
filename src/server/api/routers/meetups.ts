@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "../trpc";
@@ -10,6 +12,14 @@ export const meetupRouter = createTRPCRouter({
       },
     });
   }),
+
+  getOne: protectedProcedure
+    .input(z.object({ meetupId: z.string() }))
+    .query(({ ctx, input }) => {
+      return ctx.prisma.meetup.findUnique({
+        where: { id: input.meetupId },
+      });
+    }),
 
   create: protectedProcedure
     .input(z.object({ title: z.string() }))

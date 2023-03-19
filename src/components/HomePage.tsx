@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 import { MeetupCard } from "~/components/MeetupCard";
 
-const Meetups: React.FC = () => {
+const HomePage: React.FC = () => {
   const router = useRouter();
 
   const { data: sessionData } = useSession();
@@ -40,4 +40,4 @@ const Meetups: React.FC = () => {
   );
 };
 
-export default Meetups;
+export default HomePage;

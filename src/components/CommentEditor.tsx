@@ -27,7 +27,7 @@ export const CommentEditor = ({
         <CodeMirror
           value={code}
           width="max-w-500px"
-          height="30vh"
+          height="10vh"
           minWidth="100%"
           minHeight="30vh"
           extensions={[

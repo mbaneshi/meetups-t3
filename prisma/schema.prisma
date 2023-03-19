@@ -87,6 +87,6 @@ model Comment {
     title       String
     content     String      @db.Text
     meetup      Meetup      @relation(fields: [meetupId], references: [id])
-    meetupId    String
+    meetupId    String     
 }
 

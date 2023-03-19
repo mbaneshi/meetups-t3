@@ -3,7 +3,7 @@ import Head from "next/head";
 
 import { Header } from "~/components/Header";
 
-import Meetups from "~/components/Meetups";
+import HomePage from "~/components/HomePage";
 
 const Home: NextPage = () => {
   return (
@@ -26,7 +26,7 @@ export default Home;
 const Content: React.FC = () => {
   return (
     <div className="max-w-600px mx-auto mt-5 flex items-center justify-center gap-2">
-      <Meetups />
+      <HomePage />
     </div>
   );
 };
