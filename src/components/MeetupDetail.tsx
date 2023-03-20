@@ -26,7 +26,7 @@ const MeetupDetail = (meetup: Meetup[]) => {
     );
 
   if (meetup.meetup) {
-    console.log(meetup);
+    console.log(MeetupDetailmeetup);
   }
 
   const createComment = api.comment.create.useMutation({

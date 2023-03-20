@@ -71,8 +71,8 @@ model Meetup {
     createdAt   DateTime    @default(now())
     updatedAt   DateTime    @updatedAt
     title       String
-    // description String
-    // location    String
+    description String
+    location    String
     user        User        @relation(fields: [userId], references: [id])
     userId      String
     comments    Comment[]

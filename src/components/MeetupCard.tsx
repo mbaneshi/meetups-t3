@@ -44,6 +44,8 @@ export const MeetupCard: React.FC = () => {
               }}
             >
               <h3>{meetup.title}</h3>
+              <h3>{meetup.location}</h3>
+              <h3>{meetup.description}</h3>
               <button
                 className="font-semibold text-red-600"
                 data-id={meetup.id}

@@ -22,11 +22,19 @@ export const meetupRouter = createTRPCRouter({
     }),
 
   create: protectedProcedure
-    .input(z.object({ title: z.string() }))
+    .input(
+      z.object({
+        title: z.string(),
+        location: z.string(),
+        description: z.string(),
+      })
+    )
     .mutation(({ ctx, input }) => {
       return ctx.prisma.meetup.create({
         data: {
           title: input.title,
+          location: input.location,
+          description: input.description,
           userId: ctx.session.user.id,
         },
       });
