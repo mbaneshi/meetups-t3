@@ -47,7 +47,16 @@ function MeetupDetails() {
         >
           Return home
         </button>
-        <MeetupDetail meetup={meetup} />
+        {meetup && (
+          <MeetupDetail
+            id={meetup.id}
+            title={meetup.title}
+            createdAt={meetup.createdAt}
+            updatedAt={meetup.updatedAt}
+            description={meetup.description}
+            location={meetup.location}
+          />
+        )}
       </div>
     </div>
   );

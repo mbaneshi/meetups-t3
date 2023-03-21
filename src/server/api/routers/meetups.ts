@@ -27,6 +27,7 @@ export const meetupRouter = createTRPCRouter({
         title: z.string(),
         location: z.string(),
         description: z.string(),
+        time: z.string(),
       })
     )
     .mutation(({ ctx, input }) => {
@@ -35,6 +36,7 @@ export const meetupRouter = createTRPCRouter({
           title: input.title,
           location: input.location,
           description: input.description,
+          time: input.time,
           userId: ctx.session.user.id,
         },
       });

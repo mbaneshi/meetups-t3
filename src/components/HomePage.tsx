@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-import { MeetupCard } from "~/components/MeetupCard";
+import { HomepageMeetups } from "~/components/HomepageMeetups";
 
 const HomePage: React.FC = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="w-6/12">
       {sessionData == undefined && (
         <div className="text-center">
           <h2 className="font-semibold">
@@ -23,8 +23,8 @@ const HomePage: React.FC = () => {
           </h2>
         </div>
       )}
-      <div className="items-center justify-center px-2">
-        <MeetupCard />
+      <div className=" items-center justify-center px-2">
+        <HomepageMeetups />
         <div className="w-5xl divider" />
         <div className="my-2 flex ">
           <button
@@ -32,7 +32,7 @@ const HomePage: React.FC = () => {
             onClick={newMeetupHandler}
             disabled={!sessionData}
           >
-            Submit New Note
+            Submit New Appointment
           </button>
         </div>
       </div>

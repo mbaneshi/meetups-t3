@@ -10,7 +10,7 @@ import { CommentCard } from "~/components/CommentCard";
 
 type Meetup = RouterOutputs["meetup"]["getAll"][0];
 
-const MeetupDetail = (meetup: Meetup[]) => {
+const MeetupDetail = (props: Meetup) => {
   const router = useRouter();
   const meetupId = router.query.meetupId;
   const { data: sessionData } = useSession();
@@ -25,10 +25,6 @@ const MeetupDetail = (meetup: Meetup[]) => {
       }
     );
 
-  if (meetup.meetup) {
-    console.log(MeetupDetailmeetup);
-  }
-
   const createComment = api.comment.create.useMutation({
     onSuccess: () => {
       void refetchComments();
@@ -40,11 +36,27 @@ const MeetupDetail = (meetup: Meetup[]) => {
       void refetchComments();
     },
   });
-  return meetup.meetup ? (
+  return props ? (
     <div className="grid grid-cols-2 gap-4">
-      <div className="card mt-5 border border-gray-200 bg-base-100 shadow-xl">
-        Meetup Details
-        <h2>{meetup.meetup.title}</h2>
+      <div className="items-left card mt-5 flex justify-center border border-gray-200 bg-base-100 px-20 shadow-xl">
+        <div className=" flex w-full flex-row justify-between">
+          <p className="text-amber-600">Title:</p>
+          <p>{props.title}</p>
+        </div>
+        <div className="flex flex-row justify-between">
+          <p className="text-amber-600">Description:</p>
+          <p className="">{props.description}</p>
+        </div>
+        <div className="flex flex-row justify-between">
+          <p className="text-amber-600">Location:</p>
+          <p className="">{props.location}</p>
+        </div>
+        <div className="mt-20">
+          TODO:
+          <p className="text-amber-600">Add mapbox, image</p>
+        </div>
+
+        <div>TODO: Mapbox for location</div>
       </div>
       <div>
         <div className="">

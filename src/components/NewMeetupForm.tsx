@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -17,6 +18,7 @@ const NewMeetupForm = () => {
   const [inputTitle, setInputTitle] = useState<string>("");
   const [inputLocation, setInputLocation] = useState<string>("");
   const [inputDescription, setInputDescription] = useState<string>("");
+  const [inputTime, setInputTime] = useState<string>("");
   const [selectedMeetup, setSelectedMeetup] = useState<Meetup | null>(null);
 
   const { refetch: refetchMeetups } = api.meetup.getAll.useQuery(
@@ -41,6 +43,10 @@ const NewMeetupForm = () => {
     setInputDescription(event.currentTarget.value);
   };
 
+  const timeHandler = (event: React.ChangeEventHandler<HTMLInputElement>) => {
+    setInputTime(event.currentTarget.value);
+  };
+
   const createMeetup = api.meetup.create.useMutation({
     onSuccess: () => {
       void refetchMeetups();
@@ -52,6 +58,7 @@ const NewMeetupForm = () => {
       title: inputTitle,
       location: inputLocation,
       description: inputDescription,
+      time: inputTime,
     });
 
     void router.push("/");
@@ -62,6 +69,8 @@ const NewMeetupForm = () => {
       <div className="my-40 mx-auto max-w-md border border-gray-300 bg-base-200 p-10 shadow-xl">
         <h2 className=" font-bold">New Meetup Details</h2>
         <input
+          id="title"
+          name="title"
           type="text"
           placeholder="Title"
           className="input-bordered input input-sm my-4 h-10 w-full "
@@ -69,10 +78,22 @@ const NewMeetupForm = () => {
             titleHandler(event)
           }
         ></input>
+        <input
+          id="description"
+          name="description"
+          type="text"
+          placeholder="Desciption"
+          className=" input-bordered input input-sm my-4 h-10 w-full "
+          onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>): void =>
+            descriptionHandler(event)
+          }
+        ></input>
         <div className="font-light">
           <p>TODO: Better way of doing location?</p>
         </div>
         <input
+          id="location"
+          name="location"
           type="text"
           placeholder="Location"
           className=" input-bordered input input-sm my-4 h-10 w-full "
@@ -84,12 +105,14 @@ const NewMeetupForm = () => {
           <p>TODO: Mapbox</p>
         </div>
         <input
-          type="text"
-          placeholder="Desciption"
+          id="time"
+          name="time"
+          type="datetime-local"
+          placeholder="Time"
           className=" input-bordered input input-sm my-4 h-10 w-full "
-          onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>): void =>
-            descriptionHandler(event)
-          }
+          onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
+            timeHandler(event);
+          }}
         ></input>
         <div className="font-light">
           <p>TODO: Image</p>

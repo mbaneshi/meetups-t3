@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <div className="navbar bg-primary px-10 text-primary-content">
       <div
-        className="flex-1 cursor-pointer pl-5 text-3xl font-bold hover:text-white"
+        className="flex-1 cursor-pointer pl-5 text-3xl font-bold text-slate-50 hover:text-yellow-200"
         onClick={() => void router.push("/")}
       >
         {sessionData?.user?.name

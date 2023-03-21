@@ -73,6 +73,7 @@ model Meetup {
     title       String
     description String
     location    String
+    time        String
     user        User        @relation(fields: [userId], references: [id])
     userId      String
     comments    Comment[]
