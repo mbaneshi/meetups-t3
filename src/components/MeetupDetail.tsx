@@ -36,9 +36,14 @@ const MeetupDetail = (props: Meetup) => {
       void refetchComments();
     },
   });
+
+  function editHandler() {
+    void router.push("/" + meetup.id + "/edit");
+  }
+
   return props ? (
     <div className="grid grid-cols-2 gap-4">
-      <div className="items-left card mt-5 flex justify-center border border-gray-200 bg-base-100 px-20 shadow-xl">
+      <div className="items-left bg-base-00 card mt-5 flex justify-center border border-gray-200 px-20 shadow-xl">
         <div className=" flex w-full flex-row justify-between">
           <p className="text-amber-600">Title:</p>
           <p>{props.title}</p>
@@ -51,12 +56,23 @@ const MeetupDetail = (props: Meetup) => {
           <p className="text-amber-600">Location:</p>
           <p className="">{props.location}</p>
         </div>
-        <div className="mt-20">
-          TODO:
-          <p className="text-amber-600">Add mapbox, image</p>
+        <div className="my-3  flex flex-row justify-between">
+          <p className="text-amber-600">Time:</p>
+          <p className="">{props.time}</p>
         </div>
-
-        <div>TODO: Mapbox for location</div>
+        <div className="mt-20">
+          <h3 className="text-amber-600">TODO:</h3>
+          <p>Add mapbox, image</p>
+          <p>Mapbox for location</p>
+        </div>
+        <button
+          onClick={(evt) => {
+            evt.preventDefault();
+            editHandler(meetup);
+          }}
+        >
+          Edit
+        </button>
       </div>
       <div>
         <div className="">

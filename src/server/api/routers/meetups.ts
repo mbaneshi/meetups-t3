@@ -42,6 +42,31 @@ export const meetupRouter = createTRPCRouter({
       });
     }),
 
+  update: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        title: z.string(),
+        location: z.string(),
+        description: z.string(),
+        time: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return ctx.prisma.meetup.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          title: input.title,
+          location: input.location,
+          description: input.description,
+          time: input.time,
+          userId: ctx.session.user.id,
+        },
+      });
+    }),
+
   delete: protectedProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ ctx, input }) => {

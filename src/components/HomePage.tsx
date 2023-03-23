@@ -23,9 +23,7 @@ const HomePage: React.FC = () => {
           </h2>
         </div>
       )}
-      <div className=" items-center justify-center px-2">
-        <HomepageMeetups />
-        <div className="w-5xl divider" />
+      <div className=" items-center px-2">
         <div className="my-2 flex ">
           <button
             className="my-xl btn-warning btn-xs btn mx-auto h-8 px-10"
@@ -35,6 +33,8 @@ const HomePage: React.FC = () => {
             Submit New Appointment
           </button>
         </div>
+        <div className="w-5xl divider " />
+        <HomepageMeetups />
       </div>
     </div>
   );
