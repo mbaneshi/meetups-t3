@@ -20,7 +20,7 @@ function MeetupDetails() {
 
   const { data: sessionData } = useSession();
 
-  const { data: meetups } = api.meetup.getAll.useQuery(
+  api.meetup.getAll.useQuery(
     undefined, // no input
     {
       enabled: sessionData?.user !== undefined,
@@ -55,6 +55,8 @@ function MeetupDetails() {
             updatedAt={meetup.updatedAt}
             description={meetup.description}
             location={meetup.location}
+            time={meetup.time}
+            userId={meetup.userId}
           />
         )}
       </div>
