@@ -20,6 +20,7 @@ const NewMeetupForm = () => {
   const [inputDescription, setInputDescription] = useState<string>("");
   const [inputTime, setInputTime] = useState<string>("");
   const [selectedMeetup, setSelectedMeetup] = useState<Meetup | null>(null);
+  const [inputImage, setInputImage] = useState<string>("");
 
   const { refetch: refetchMeetups } = api.meetup.getAll.useQuery(
     undefined, // no input
@@ -44,7 +45,11 @@ const NewMeetupForm = () => {
   };
 
   const timeHandler = (event: React.ChangeEventHandler<HTMLInputElement>) => {
-    setInputTime(event.currentTarget.value);
+    setInputTime(event.target.value);
+  };
+
+  const imageHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    setInputImage(event.currentTarget.value);
   };
 
   const createMeetup = api.meetup.create.useMutation({
@@ -59,6 +64,7 @@ const NewMeetupForm = () => {
       location: inputLocation,
       description: inputDescription,
       time: inputTime,
+      image: inputImage,
     });
 
     void router.push("/");
@@ -69,6 +75,7 @@ const NewMeetupForm = () => {
       <div className="my-40 mx-auto max-w-md border border-gray-300 bg-base-200 p-10 shadow-xl">
         <h2 className=" font-bold">New Meetup Details</h2>
         <input
+          required
           id="title"
           name="title"
           type="text"
@@ -79,6 +86,7 @@ const NewMeetupForm = () => {
           }
         ></input>
         <input
+          required
           id="description"
           name="description"
           type="text"
@@ -92,6 +100,7 @@ const NewMeetupForm = () => {
           <p>TODO: Better way of doing location?</p>
         </div>
         <input
+          required
           id="location"
           name="location"
           type="text"
@@ -105,6 +114,7 @@ const NewMeetupForm = () => {
           <p>TODO: Mapbox</p>
         </div>
         <input
+          required
           id="time"
           name="time"
           type="datetime-local"
@@ -117,11 +127,20 @@ const NewMeetupForm = () => {
         <div className="font-light">
           <p>TODO: Image</p>
         </div>
-        {/* <input
-          type="text"
-          placeholder="Image"
-          className=" input-bordered input input-sm my-4 h-10 w-full"
-        ></input> */}
+        <div>
+          <label htmlFor="image">Meetup Image</label>
+          <input
+            className="input-bordered input input-sm my-4 h-10 w-full"
+            id="image"
+            name="image"
+            type="url"
+            required
+            placeholder="image URL"
+            onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>): void =>
+              imageHandler(event)
+            }
+          />
+        </div>
         <button className="my-xl btn-warning btn-xs btn mx-auto mt-5 h-8 px-14">
           Submit
         </button>{" "}

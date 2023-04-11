@@ -63,7 +63,9 @@ const MeetupDetail = (props: Meetup) => {
         <div className="mt-20">
           <h3 className="text-amber-600">TODO:</h3>
           <p>Add mapbox, image</p>
-          <p>Mapbox for location</p>
+          <div className="my-3  flex flex-row justify-between">
+            <p className="">{props.image}</p>
+          </div>
         </div>
         <button
           onClick={(evt) => {

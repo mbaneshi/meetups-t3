@@ -28,6 +28,7 @@ export const meetupRouter = createTRPCRouter({
         location: z.string(),
         description: z.string(),
         time: z.string(),
+        image: z.string(),
       })
     )
     .mutation(({ ctx, input }) => {
@@ -37,6 +38,7 @@ export const meetupRouter = createTRPCRouter({
           location: input.location,
           description: input.description,
           time: input.time,
+          image: input.image,
           userId: ctx.session.user.id,
         },
       });
@@ -50,6 +52,7 @@ export const meetupRouter = createTRPCRouter({
         location: z.string(),
         description: z.string(),
         time: z.string(),
+        image: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -62,6 +65,7 @@ export const meetupRouter = createTRPCRouter({
           location: input.location,
           description: input.description,
           time: input.time,
+          image: input.image,
           userId: ctx.session.user.id,
         },
       });

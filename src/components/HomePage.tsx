@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <section className="">
+    <section className="w-10/12">
       {sessionData == undefined && (
         <div className="text-center">
           <h2 className="font-semibold">
