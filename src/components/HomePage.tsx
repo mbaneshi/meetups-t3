@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <div className="w-6/12">
+    <section className="">
       {sessionData == undefined && (
         <div className="text-center">
           <h2 className="font-semibold">
@@ -26,17 +26,16 @@ const HomePage: React.FC = () => {
       <div className=" items-center px-2">
         <div className="my-2 flex ">
           <button
-            className="my-xl btn-warning btn-xs btn mx-auto h-8 px-10"
+            className="my-xl btn-warning btn-xs btn mx-auto h-8 px-10 text-slate-50"
             onClick={newMeetupHandler}
             disabled={!sessionData}
           >
             Submit New Appointment
           </button>
         </div>
-        <div className="w-5xl divider " />
         <HomepageMeetups />
       </div>
-    </div>
+    </section>
   );
 };
 

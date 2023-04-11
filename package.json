@@ -11,6 +11,7 @@
     "inspect-prod": "vercel inspect https://meetups-t3.vercel.app"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^2.4.0",
     "@codemirror/lang-markdown": "^6.1.0",
     "@codemirror/language-data": "^6.1.0",
     "@codemirror/view": "^6.9.1",

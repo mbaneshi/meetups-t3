@@ -7,21 +7,30 @@ export const Header = () => {
   const { data: sessionData } = useSession();
 
   return (
-    <div className="navbar bg-primary px-10 text-primary-content">
+    <div className="navbar justify-center bg-primary px-0 text-primary-content 3xl:px-0">
       <div
-        className="flex-1 cursor-pointer pl-5 text-3xl font-bold text-slate-50 hover:text-yellow-200"
+        className="text-md max-w-3xl flex-1 cursor-pointer px-1 font-bold text-slate-50 hover:text-yellow-200 3xl:px-5"
         onClick={() => void router.push("/")}
       >
         {sessionData?.user?.name
           ? `Appointments for ${sessionData.user.name}`
           : ""}
       </div>
-      <div className=" flex-non gap-2">
+      {sessionData && (
+        <span
+          className="hover:text-yellow  text-md cursor-pointer pl-5 font-bold text-slate-50 hover:text-yellow-200"
+          onClick={() => void signOut()}
+        >
+          Log out
+        </span>
+      )}
+
+      <div className="flex-non gap-2">
         <div className="dropdown-end dropdown">
           {sessionData?.user ? (
             <label
               tabIndex={0}
-              className="btn-ghost btn-circle avatar btn"
+              className="btn-ghost btn-circle avatar btn "
               onClick={() => void signOut()}
             >
               <div className="w-10 rounded-full">

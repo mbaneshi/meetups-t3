@@ -25,7 +25,7 @@ export default Home;
 
 const Content: React.FC = () => {
   return (
-    <div className="max-w-600px mx-auto mt-5 flex items-center justify-center gap-2">
+    <div className="mx-auto mt-5 flex items-center justify-center gap-2">
       <HomePage />
     </div>
   );
