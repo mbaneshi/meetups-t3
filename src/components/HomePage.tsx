@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <section className="w-10/12">
+    <section className="mx-5 flex max-w-xl justify-center md:max-w-3xl">
       {sessionData == undefined && (
         <div className="text-center">
           <h2 className="font-semibold">
@@ -23,10 +23,10 @@ const HomePage: React.FC = () => {
           </h2>
         </div>
       )}
-      <div className=" items-center px-2">
-        <div className="my-2 flex ">
+      <div className="items-center p-0 md:px-2">
+        <div className="my-2 flex justify-center">
           <button
-            className="my-xl btn-warning btn-xs btn mx-auto h-8 px-10 text-slate-50"
+            className="my-xl btn-warning btn-sm btn mx-auto h-8 px-10 text-slate-50"
             onClick={newMeetupHandler}
             disabled={!sessionData}
           >

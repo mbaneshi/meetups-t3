@@ -9,7 +9,7 @@ export const Header = () => {
   return (
     <div className="navbar justify-center bg-primary px-0 text-primary-content 3xl:px-0">
       <div
-        className="text-md max-w-3xl flex-1 cursor-pointer px-1 font-bold text-slate-50 hover:text-yellow-200 3xl:px-5"
+        className="max-w-3xl flex-1 cursor-pointer px-1 text-sm font-bold text-slate-50 hover:text-yellow-200 3xl:px-5 md:text-base"
         onClick={() => void router.push("/")}
       >
         {sessionData?.user?.name
@@ -18,10 +18,10 @@ export const Header = () => {
       </div>
       {sessionData && (
         <span
-          className="hover:text-yellow  text-md cursor-pointer pl-5 font-bold text-slate-50 hover:text-yellow-200"
+          className="hover:text-yellow cursor-pointer pl-5 text-sm font-bold text-white hover:text-yellow-200 md:text-base"
           onClick={() => void signOut()}
         >
-          Log out
+          Sign out
         </span>
       )}
 
