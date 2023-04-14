@@ -69,10 +69,11 @@ const NewMeetupForm = () => {
 
     void router.push("/");
   };
+
   return (
     <form onSubmit={submitHandler}>
       <Header />
-      <div className="my-40 mx-auto max-w-md border border-gray-300 bg-base-200 p-10 shadow-xl">
+      <div className="my-16 mx-auto max-w-md rounded-md border border-gray-300 bg-base-200 p-10 shadow-xl">
         <h2 className=" font-bold">New Meetup Details</h2>
         <input
           required
@@ -80,7 +81,7 @@ const NewMeetupForm = () => {
           name="title"
           type="text"
           placeholder="Title"
-          className="input-bordered input input-sm my-4 h-10 w-full "
+          className="input-bordered input input-sm my-1 h-10 w-full "
           onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>): void =>
             titleHandler(event)
           }
@@ -91,46 +92,37 @@ const NewMeetupForm = () => {
           name="description"
           type="text"
           placeholder="Desciption"
-          className=" input-bordered input input-sm my-4 h-10 w-full "
+          className=" input-bordered input input-sm my-1 h-10 w-full "
           onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>): void =>
             descriptionHandler(event)
           }
         ></input>
-        <div className="font-light">
-          <p>TODO: Better way of doing location?</p>
-        </div>
+        <div className="font-light"></div>
         <input
           required
           id="location"
           name="location"
           type="text"
           placeholder="Location"
-          className=" input-bordered input input-sm my-4 h-10 w-full "
+          className=" input-bordered input input-sm my-1 h-10 w-full "
           onKeyUp={(event: React.KeyboardEvent<HTMLInputElement>): void =>
             locationHandler(event)
           }
         ></input>
-        <div className="font-light">
-          <p>TODO: Mapbox</p>
-        </div>
         <input
           required
           id="time"
           name="time"
           type="datetime-local"
           placeholder="Time"
-          className=" input-bordered input input-sm my-4 h-10 w-full "
+          className=" input-bordered input input-sm my-1 h-10 w-full "
           onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
             timeHandler(event);
           }}
         ></input>
-        <div className="font-light">
-          <p>TODO: Image</p>
-        </div>
         <div>
-          <label htmlFor="image">Meetup Image</label>
           <input
-            className="input-bordered input input-sm my-4 h-10 w-full"
+            className="input-bordered input input-sm  h-10 w-full"
             id="image"
             name="image"
             type="url"
@@ -144,6 +136,10 @@ const NewMeetupForm = () => {
         <button className="my-xl btn-warning btn-xs btn mx-auto mt-5 h-8 px-14">
           Submit
         </button>{" "}
+      </div>
+      <div className=" w-full text-center font-light">
+        <p>TODO: Mapbox</p>
+        <p>TODO: Better way of doing location?</p>
       </div>
     </form>
   );

@@ -40,25 +40,28 @@ function MeetupDetails() {
   return (
     <div>
       <Header />
-      <div className="m-auto my-10 max-w-4xl">
-        <button
-          className="btn-warning btn-xs btn px-5"
-          onClick={() => void router.push("/")}
-        >
-          Return home
-        </button>
-        {meetup && (
-          <MeetupDetail
-            id={meetup.id}
-            title={meetup.title}
-            createdAt={meetup.createdAt}
-            updatedAt={meetup.updatedAt}
-            description={meetup.description}
-            location={meetup.location}
-            time={meetup.time}
-            userId={meetup.userId}
-          />
-        )}
+      <div className="flex justify-center">
+        <div className="my-3 flex max-w-4xl flex-col items-center ">
+          <button
+            className="btn-warning btn-xs btn px-5 text-white"
+            onClick={() => void router.push("/")}
+          >
+            Return home
+          </button>
+          {meetup && (
+            <MeetupDetail
+              id={meetup.id}
+              title={meetup.title}
+              createdAt={meetup.createdAt}
+              updatedAt={meetup.updatedAt}
+              description={meetup.description}
+              location={meetup.location}
+              time={meetup.time}
+              userId={meetup.userId}
+              image={meetup.image}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

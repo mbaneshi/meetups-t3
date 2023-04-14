@@ -17,7 +17,7 @@ export const CommentCard = ({
 
   return (
     <div className="card mt-5 border border-gray-200 bg-base-100 shadow-xl">
-      <div className="card-body m-0 p-3">
+      <div className="card-body m-0 p-0">
         <div
           className={`collapse-arrow ${
             isExpanded ? "collapse-open" : ""
@@ -27,14 +27,17 @@ export const CommentCard = ({
           <div className="collapse-title text-xl font-bold">
             {comment.title}
           </div>
-          <div className="collapse-contet">
-            <article className="prose lg:prose-xl">
+          <div className="collapse-content">
+            <article className="lg:prose-md prose">
               <ReactMarkdown>{comment.content}</ReactMarkdown>
             </article>
           </div>
         </div>
         <div className="card-actions mx-2 flex justify-end">
-          <button className="btn-warning btn-xs btn px-5" onClick={onDelete}>
+          <button
+            className="btn-warning btn-xs btn mb-2 w-20 text-white"
+            onClick={onDelete}
+          >
             Delete
           </button>
         </div>

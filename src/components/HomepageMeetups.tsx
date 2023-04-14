@@ -43,13 +43,13 @@ export const HomepageMeetups: React.FC<ImageLoaderProps> = () => {
   }
   return (
     <>
-      <ul className="menu rounded-box flex max-w-4xl bg-base-100 p-1 md:p-2">
+      <ul className="menu rounded-box flex max-w-4xl justify-center bg-base-100 p-1 md:p-2">
         {meetups?.map((meetup) => (
           <li key={meetup.id} title={meetup.title}>
-            <div className="card mb-5 flex-col border border-slate-200 bg-base-100 p-0 shadow-2xl md:h-[250px] md:flex-row">
+            <section className="max-w-800px card mb-5 flex-col border border-slate-200 bg-base-100 p-0 shadow-2xl md:h-[200px] md:flex-row">
               <div className="w-full items-center">
-                <div className="w-fill flex flex-col md:flex-row">
-                  <section className="md: md: relative h-[150px] overflow-hidden rounded-tl-lg rounded-tr-lg md:mr-3 md:h-[250px] md:w-4/12 md:rounded-bl-lg md:rounded-tr-none">
+                <article className="w-fill flex flex-col md:flex-row">
+                  <section className="md: md: relative h-[150px] overflow-hidden rounded-tl-lg rounded-tr-lg md:mr-3 md:h-[200px] md:w-4/12 md:rounded-bl-lg md:rounded-tr-none">
                     <Image
                       loader={myLoader}
                       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -61,7 +61,7 @@ export const HomepageMeetups: React.FC<ImageLoaderProps> = () => {
                   <div className="flex flex-col justify-between md:w-8/12">
                     <div className="flex flex-col ">
                       <div className="mb-2">
-                        <p className="mt-1 text-center text-xl font-bold text-amber-600 ">
+                        <p className="mt-1 text-center font-sans text-xl font-bold text-amber-600 ">
                           {meetup.title}
                         </p>
                       </div>
@@ -70,7 +70,7 @@ export const HomepageMeetups: React.FC<ImageLoaderProps> = () => {
                           <p className="text-md mt-1 w-full font-bold text-amber-500 md:mr-1 md:mt-0 md:w-3/12 md:text-right">
                             Description:
                           </p>
-                          <p className="text-md text-bottom w-full md:w-9/12 md:text-left">
+                          <p className="text-md text-bottom max-h-11 w-full overflow-hidden  md:w-9/12 md:text-left">
                             {meetup.description}
                           </p>
                         </div>
@@ -78,7 +78,7 @@ export const HomepageMeetups: React.FC<ImageLoaderProps> = () => {
                           <p className="text-md mt-1 w-full font-bold text-amber-500 md:mr-1 md:mt-0 md:w-3/12 md:text-right">
                             Location:
                           </p>
-                          <p className="text-md w-full md:w-9/12 md:text-left">
+                          <p className="text-md  max-h-5 w-full overflow-hidden md:w-9/12 md:text-left">
                             {meetup.location}
                           </p>
                         </div>
@@ -118,9 +118,9 @@ export const HomepageMeetups: React.FC<ImageLoaderProps> = () => {
                       </button>
                     </div>
                   </div>
-                </div>
+                </article>
               </div>
-            </div>
+            </section>
           </li>
         ))}
       </ul>

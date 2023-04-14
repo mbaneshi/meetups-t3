@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <section className="mx-5 flex max-w-xl justify-center md:max-w-3xl">
+    <section className="mx-5 flex max-w-xl flex-col justify-center md:max-w-3xl">
       {sessionData == undefined && (
         <div className="text-center">
           <h2 className="font-semibold">
@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
           </h2>
         </div>
       )}
-      <div className="items-center p-0 md:px-2">
+      <div className=" p-0 md:px-4 ">
         <div className="my-2 flex justify-center">
           <button
             className="my-xl btn-warning btn-sm btn mx-auto h-8 px-10 text-slate-50"

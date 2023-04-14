@@ -13,8 +13,8 @@ export const CommentEditor = ({
   const [title, setTitle] = useState<string>("");
 
   return (
-    <div className="card mt-5 border border-gray-200 bg-base-100 shadow-xl">
-      <div className="card-body">
+    <div className="card border border-gray-200 bg-base-100 shadow-xl">
+      <div className="card-body m-0 p-0 ">
         <h2 className="card-title">
           <input
             type="text"
@@ -46,7 +46,7 @@ export const CommentEditor = ({
               setCode("");
               setTitle("");
             }}
-            className="btn-primary btn"
+            className="btn-primary btn-xs btn mr-2 mt-1 mb-2  px-6 text-white"
             disabled={title.trim().length === 0 || code.trim().length === 0}
           >
             Save

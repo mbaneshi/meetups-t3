@@ -10,6 +10,9 @@ module.exports = {
       "2xl": "1536px",
       "3xl": "450px",
     },
+    fontFamily: {
+      abc: ["Lato", "sans-serif"],
+    },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };

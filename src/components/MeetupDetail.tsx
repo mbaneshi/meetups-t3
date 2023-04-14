@@ -10,10 +10,17 @@ import { CommentCard } from "~/components/CommentCard";
 
 type Meetup = RouterOutputs["meetup"]["getAll"][0];
 
-const MeetupDetail = (props: Meetup) => {
+const MeetupDetail: React.FC<ImageLoaderProps> = (props: Meetup) => {
   const router = useRouter();
   const meetupId = router.query.meetupId;
   const { data: sessionData } = useSession();
+
+  const { data: meetup } = api.meetup.getOne.useQuery(
+    { meetupId: meetupId ?? "" }, // no input
+    {
+      enabled: sessionData?.user !== undefined,
+    }
+  );
 
   const { data: comments, refetch: refetchComments } =
     api.comment.getAll.useQuery(
@@ -37,47 +44,61 @@ const MeetupDetail = (props: Meetup) => {
     },
   });
 
-  function editHandler() {
-    void router.push("/" + meetup.id + "/edit");
+  function editHandler(meetup: Meetup) {
+    void router.push("/" + meetupId + "/edit");
   }
 
-  return props ? (
-    <div className="grid grid-cols-2 gap-4">
-      <div className="items-left bg-base-00 card mt-5 flex justify-center border border-gray-200 px-20 shadow-xl">
-        <div className=" flex w-full flex-row justify-between">
-          <p className="text-amber-600">Title:</p>
-          <p>{props.title}</p>
+  return meetup ? (
+    <div className="mt-3 grid gap-4 md:grid-cols-2">
+      <section className="items-left bg-base-00 card mx-4 flex justify-between border-gray-200 shadow-xl md:mx-0 md:ml-4">
+        <div>
+          <img className="h-[200px] w-full" src={props.image} alt="" />
         </div>
-        <div className="flex flex-row justify-between">
-          <p className="text-amber-600">Description:</p>
-          <p className="">{props.description}</p>
-        </div>
-        <div className="flex flex-row justify-between">
-          <p className="text-amber-600">Location:</p>
-          <p className="">{props.location}</p>
-        </div>
-        <div className="my-3  flex flex-row justify-between">
-          <p className="text-amber-600">Time:</p>
-          <p className="">{props.time}</p>
-        </div>
-        <div className="mt-20">
-          <h3 className="text-amber-600">TODO:</h3>
-          <p>Add mapbox, image</p>
-          <div className="my-3  flex flex-row justify-between">
-            <p className="">{props.image}</p>
+        <div className="py-2 px-2 text-center">
+          <div className="my-2 flex w-full flex-col justify-between md:flex-row">
+            <p className="mr-3 w-full text-right font-abc font-bold text-amber-600 md:w-3/12">
+              Title:
+            </p>
+            <p className="w-full text-left md:w-9/12">{meetup.title}</p>
+          </div>
+          <div className="my-2 flex flex-col justify-between md:flex-row">
+            <p className="mr-3 w-full text-right font-bold text-amber-600 md:w-3/12 ">
+              Description:
+            </p>
+            <p className="w-full text-left md:w-9/12">{meetup.description}</p>
+          </div>
+          <div className="my-2 flex flex-col justify-between md:flex-row">
+            <p className="mr-3 w-full text-right font-bold text-amber-600 md:w-3/12">
+              Location:
+            </p>
+            <p className="w-full text-left md:w-9/12">{meetup.location}</p>
+          </div>
+          <div className="my-3 flex flex-col justify-between md:flex-row">
+            <p className="mr-3 w-full text-right font-bold text-amber-600 md:w-3/12">
+              Time:
+            </p>
+            <p className="w-full text-left md:w-9/12">{meetup.time}</p>
+          </div>
+          <div className="mt-20">
+            <h3 className="text-amber-600">TODO:</h3>
+            <p>Mapbox</p>
           </div>
         </div>
-        <button
-          onClick={(evt) => {
-            evt.preventDefault();
-            editHandler(meetup);
-          }}
-        >
-          Edit
-        </button>
-      </div>
-      <div>
-        <div className="">
+
+        <div className="flex justify-center">
+          <button
+            className="btn-warning btn-xs btn mr-2 mt-1 mb-2  w-20 px-8 text-white"
+            onClick={(evt) => {
+              evt.preventDefault();
+              editHandler(meetup);
+            }}
+          >
+            Edit
+          </button>
+        </div>
+      </section>
+      <section className="mx-4 md:mx-0 md:mr-4">
+        <div>
           <CommentEditor
             onSave={({ title, content }) => {
               void createComment.mutate({
@@ -90,7 +111,7 @@ const MeetupDetail = (props: Meetup) => {
         </div>
         <div>
           {comments?.map((comment) => (
-            <div key={comment.id} className="mt-5">
+            <div key={comment.id}>
               <CommentCard
                 comment={comment}
                 onDelete={() => void deleteComment.mutate({ id: comment.id })}
@@ -98,7 +119,7 @@ const MeetupDetail = (props: Meetup) => {
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   ) : (
     <div>Loading</div>
