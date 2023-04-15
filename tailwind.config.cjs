@@ -3,16 +3,13 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      sm: "640px",
-      md: "835px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
-      "3xl": "450px",
-    },
-    fontFamily: {
-      abc: ["Lato", "sans-serif"],
+      sm: "570px",
+      md: "640px",
+      lg: "750px",
+      xl: "1024px",
+      "2xl": "1280px",
+      "3xl": "1536px",
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  plugins: [require('@tailwindcss/line-clamp'), require("@tailwindcss/typography"), require("daisyui"), ],
 };

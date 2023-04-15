@@ -24,9 +24,9 @@ const HomePage: React.FC = () => {
         </div>
       )}
       <div className=" p-0 md:px-4 ">
-        <div className="my-2 flex justify-center">
+        <div className="mb-7 flex justify-center">
           <button
-            className="my-xl btn-warning btn-sm btn mx-auto h-8 px-10 text-slate-50"
+            className="my-xl btn-warning btn-sm btn mx-auto h-8 px-10 capitalize text-white"
             onClick={newMeetupHandler}
             disabled={!sessionData}
           >

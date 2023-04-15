@@ -40,10 +40,10 @@ function MeetupDetails() {
   return (
     <div>
       <Header />
-      <div className="flex justify-center">
-        <div className="my-3 flex max-w-4xl flex-col items-center ">
+      <div className="flex justify-center mt-7">
+        <div className="flex max-w-4xl flex-col items-center ">
           <button
-            className="btn-warning btn-xs btn px-5 text-white"
+            className="my-xl btn-warning btn-sm btn mx-auto h-8 px-10 capitalize text-white"
             onClick={() => void router.push("/")}
           >
             Return home

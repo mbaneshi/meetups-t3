@@ -43,13 +43,13 @@ export const HomepageMeetups: React.FC<ImageLoaderProps> = () => {
   }
   return (
     <>
-      <ul className="menu rounded-box flex max-w-4xl justify-center bg-base-100 p-1 md:p-2">
+      <ul className="menu rounded-box flex max-w-4xl bg-base-100  px-1 sm:px-2">
         {meetups?.map((meetup) => (
           <li key={meetup.id} title={meetup.title}>
-            <section className="max-w-800px card mb-5 flex-col border border-slate-200 bg-base-100 p-0 shadow-2xl md:h-[200px] md:flex-row">
-              <div className="w-full items-center">
-                <article className="w-fill flex flex-col md:flex-row">
-                  <section className="md: md: relative h-[150px] overflow-hidden rounded-tl-lg rounded-tr-lg md:mr-3 md:h-[200px] md:w-4/12 md:rounded-bl-lg md:rounded-tr-none">
+            <section className="max-w-800px flex-colborder card mb-7 max-w-2xl border-slate-200 bg-base-100 p-0 shadow-2xl sm:h-[200px] sm:flex-row">
+              <div className="w-full  ">
+                <article className="w-fill flex flex-col justify-center sm:flex-row ">
+                  <section className="relative h-[150px] overflow-hidden rounded-tl-lg rounded-tr-lg  sm:h-[200px] sm:w-4/12 sm:rounded-bl-lg sm:rounded-tr-none">
                     <Image
                       loader={myLoader}
                       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -58,44 +58,44 @@ export const HomepageMeetups: React.FC<ImageLoaderProps> = () => {
                       fill
                     />
                   </section>
-                  <div className="flex flex-col justify-between md:w-8/12">
-                    <div className="flex flex-col ">
-                      <div className="mb-2">
-                        <p className="mt-1 text-center font-sans text-xl font-bold text-amber-600 ">
+                  <div className="flex flex-col justify-between sm:w-8/12">
+                    <div className="flex flex-col">
+                      <div className="flex justify-center">
+                        <p className="text-md w-full sm:rounded-tr-md  bg-yellow-400 py-1 text-center font-sans font-bold capitalize text-white">
                           {meetup.title}
                         </p>
                       </div>
-                      <div className="flex flex-col justify-between">
-                        <div className="mt-1 flex w-full flex-col text-center md:flex-row">
-                          <p className="text-md mt-1 w-full font-bold text-amber-500 md:mr-1 md:mt-0 md:w-3/12 md:text-right">
-                            Description:
+                      <div className="mt-1 flex max-w-full flex-col justify-between mx-2">
+                        <div className="flex w-full  flex-col text-center sm:flex-row">
+                          <p className="text-md mt-1 w-full font-bold text-yellow-500 sm:mr-1 sm:mt-0 sm:w-2/12 sm:text-right">
+                            What?
                           </p>
-                          <p className="text-md text-bottom max-h-11 w-full overflow-hidden  md:w-9/12 md:text-left">
+                          <p className="text-md text-bottom  w-full sm:w-10/12 sm:text-left line-clamp-6 sm:line-clamp-3">
                             {meetup.description}
                           </p>
                         </div>
-                        <div className="mt-1 flex w-full flex-col text-center md:flex-row ">
-                          <p className="text-md mt-1 w-full font-bold text-amber-500 md:mr-1 md:mt-0 md:w-3/12 md:text-right">
-                            Location:
+                        <div className="mt-1 flex w-full flex-col text-center sm:flex-row ">
+                          <p className="text-md mt-1 w-full font-bold text-yellow-500 sm:mr-1 sm:mt-0 sm:w-2/12 sm:text-right">
+                            Where?
                           </p>
-                          <p className="text-md  max-h-5 w-full overflow-hidden md:w-9/12 md:text-left">
+                          <p className="text-md  max-h-5 w-full overflow-hidden sm:w-10/12 sm:text-left">
                             {meetup.location}
                           </p>
                         </div>
-                        <div className="mt-1 flex w-full flex-col text-center  md:flex-row ">
-                          <p className="text-md mt-1 w-full font-bold text-amber-500 md:mr-1 md:mt-0 md:w-3/12 md:text-right">
-                            Time:
+                        <div className="mt-1 flex w-full flex-col text-center  sm:flex-row ">
+                          <p className="text-md mt-1 w-full font-bold text-yellow-500 sm:mr-1 sm:mt-0 sm:w-2/12 sm:text-right">
+                            When?
                           </p>
-                          <p className="text-md mt-1 w-full md:mt-0 md:w-9/12 md:text-left">
+                          <p className="text-md mt-1 w-full sm:mt-0 sm:w-10/12 sm:text-left">
                             {meetup.time}
                           </p>
                         </div>
                       </div>
                     </div>
 
-                    <div className="my-2 flex flex-row items-end justify-center md:mt-0">
+                    <div className="my-2 flex flex-row items-end justify-center sm:mt-0">
                       <button
-                        className="btn-warning btn-xs btn mr-2 mt-1 flex justify-center text-white md:justify-end"
+                        className="btn-warning btn-xs btn mr-2 mt-1 flex justify-center capitalize text-white sm:justify-end "
                         onClick={(evt) => {
                           evt.preventDefault();
                           showDetailsHandler(meetup);
@@ -104,7 +104,7 @@ export const HomepageMeetups: React.FC<ImageLoaderProps> = () => {
                         More Details
                       </button>
                       <button
-                        className="btn-delete btn-xs btn mt-1 flex text-white md:mr-2 "
+                        className="btn-delete btn-xs btn mt-1 flex capitalize text-white sm:mr-2 bg-red-500 border-0"
                         data-id={meetup.id}
                         onClick={(
                           event: React.MouseEvent<HTMLButtonElement>
